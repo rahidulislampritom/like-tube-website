@@ -16,12 +16,12 @@
         <!-- nav bar -->
         <nav>
             <div class="md:flex items-center justify-between py-2 border-b-2  space-y-2 lg:space-y-0">
-                <div class="w-[100px]">
+                <div class="w-[100px] md:w-[200px]">
                     <img src="/assets/Logo.png" alt="">
                 </div>
                 <div>
-                    <label class="input input-bordered flex items-center gap-2">
-                        <input type="text" class="grow" placeholder="Search" />
+                    <label class="input input-bordered flex items-center gap-2  ">
+                        <input type="text" class="grow md:w-[350px]" placeholder="Search" />
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                             class="h-4 w-4 opacity-70">
                             <path fill-rule="evenodd"
@@ -31,16 +31,25 @@
                     </label>
                 </div>
                 <div>
-                    <button class="btn">SORT</button>
+                    <button class="btn md:text-xl">SORT</button>
                 </div>
             </div>
         </nav>
         <!-- another nav for button -->
-        <nav id="categories" class="flex justify-center gap-5 py-3">
+        <nav id="categories" class="flex justify-center gap-5 py-6">
 
         </nav>
     </header>
     <!-- header end here -->
+    <!-- main section start here -->
+    <main class="w-11/12 mx-auto">
+        <!-- all videos append in this section -->
+        <section id="videos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        </section>
+
+    </main>
+    <!-- main section end here -->
 
     <script src="/JS/like.js"></script>
 </body>

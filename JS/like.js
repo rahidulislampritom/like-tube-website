@@ -6,6 +6,13 @@ function getTimeString(time) {
     return `${hour} hour ${minute} minute ${remainingSecond} second ago`
 }
 
+const removeActiveClass = () => {
+    const buttons = document.getElementsByClassName("category-btn")
+    for(let button of buttons){
+        button.classList.remove("btn-primary")
+    }
+}
+
 
 
 //bring categories from api
@@ -30,7 +37,13 @@ const loadVideos = () => {
 const loadCategoryVideos = (id) => {
     fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
         .then(res => res.json())
-        .then(data => displayVideos(data.category))
+        .then(data =>{
+            removeActiveClass()
+            const activeBtn = document.getElementById(`btn-${id}`)
+            activeBtn.classList.add("btn-primary") 
+            displayVideos(data.category)
+           
+        })
         .catch(err => console.log(err));
 }
 
@@ -61,11 +74,10 @@ const loadCategoryVideos = (id) => {
 // display categories by appending in html (another nav for button)
 const displayCategories = (categories) => {
     const categoryContainer = document.getElementById("categories");
-    categories.forEach((item) => {
-        // console.log(item);
+    categories.forEach((item) => { 
         const buttonContainer = document.createElement("div");
         buttonContainer.innerHTML = `
-            <button onclick = "loadCategoryVideos(${item.category_id})" class = "btn lg:text-2xl">
+            <button id = "btn-${item.category_id}" onclick = "loadCategoryVideos(${item.category_id})" class = "btn category-btn lg:text-2xl">
             ${item.category}
             </button>
         `
@@ -84,7 +96,7 @@ const displayVideos = (videos) => {
     if (videos.length === 0) {
         videoContainer.classList.remove("grid")
         videoContainer.innerHTML = `
-        <div class="min-h-[450px]  flex flex-col items-center justify-center  gap-3">
+        <div class="lg:min-h-[450px]  flex flex-col items-center justify-center  gap-3">
             <img  src="/assets/Icon.png" alt=""> 
             <p class = "text-xl font-semibold" >No Content Available</p> 
        </div>

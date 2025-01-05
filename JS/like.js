@@ -80,6 +80,19 @@ const displayCategories = (categories) => {
 const displayVideos = (videos) => {
     const videoContainer = document.getElementById('videos');
     videoContainer.innerHTML = "";
+
+    if (videos.length === 0) {
+        videoContainer.classList.remove("grid")
+        videoContainer.innerHTML = `
+        <div class="min-h-[450px]  flex flex-col items-center justify-center  gap-3">
+            <img  src="/assets/Icon.png" alt=""> 
+            <p class = "text-xl font-semibold" >No Content Available</p> 
+       </div>
+        `;
+        return
+    }else{
+        videoContainer.classList.add('grid')
+    }
     videos.forEach((video) => {
         // console.log(video);
         const card = document.createElement('div');
@@ -124,7 +137,7 @@ const displayVideos = (videos) => {
     </div>
     `
         videoContainer.append(card);
-        
+
 
     })
 
